@@ -1,5 +1,6 @@
 import { Comment } from '../comment/comment'
 import styles from './Post.module.css'
+import {Avatar} from '../avatar/avatar'
 
 export function Post(){
     return (
@@ -7,11 +8,10 @@ export function Post(){
 
         <header>
             <div className={styles.author}>
-                <img className={styles.avatar}
-                src="https://github.com/constantino2710.png" alt="" />
+                <Avatar src="https://github.com/igorcarvalheira.png"/>
                 <div className={styles.authorInfo}>
-                    <strong>João Constantino</strong>
-                    <span>Web Developer</span>
+                    <strong>Igor Japiassu</strong>
+                    <span>Gay Developer</span>
                 </div>
 
             </div>
@@ -23,8 +23,8 @@ export function Post(){
 
         <div className={styles.content}>
         <p>Fala galeraa 👋</p>
-        <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-        <p><a href=""> jane.design/doctorcare</a> </p>
+        <p>Acabei de subir mais um projeto no meu portifólio, o nome do projeto é catch the gay person, olhem lá.</p>
+        <p><a href=""> I.guinho/japiass.u</a> </p>
 
         <p>
             <a href="">#novoprojeto</a> {' '} 

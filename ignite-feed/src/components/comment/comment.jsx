@@ -6,8 +6,7 @@ import {Avatar} from '../avatar/avatar'
 export function Comment ({ content, onDeleteComment }) {
 
 	function handleDeleteComment(){
-
-		deleteComment(content);
+		onDeleteComment(content);
 	}
 
 	return(

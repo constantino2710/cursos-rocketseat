@@ -42,6 +42,10 @@ export function Post({author, publishedAt, content}){
         setNewCommentText(event.target.value);
     }
 
+    function deleteComment(comment){
+        setComments();
+    }
+
 
 
     return (
@@ -65,9 +69,9 @@ export function Post({author, publishedAt, content}){
         <div className={styles.content}>
             {content.map(Line =>{
                 if (Line.type == 'paragraph'){
-                    return <p>{Line.content}</p>
+                    return <p key={Line.content}>{Line.content}</p>
                 } else if (Line.type =='link'){
-                    return <p><a href='#'>{Line.content}</a></p>
+                    return <p key={Line.content}><a href='#'>{Line.content}</a></p>
                 }
             })}
         </div>
@@ -89,7 +93,13 @@ export function Post({author, publishedAt, content}){
         </form>
         <div className={styles.commentList}>
             {comments.map(comment =>{
-                return <Comment content={comment}/>
+                return (
+                <Comment 
+                    key={comment} 
+                    content={comment}
+                    onDeleteComment={deleteComment}
+                    />
+                )
             })}
         </div>
 

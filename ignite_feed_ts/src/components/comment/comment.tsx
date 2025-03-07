@@ -1,11 +1,15 @@
 import { Pizza, ThumbsUp, Trash } from 'phosphor-react';
 import styles from './comment.module.css';
-import {Avatar} from '../avatar/avatar'
+import {Avatar} from '../avatar/avatar.tsx'
 import {useState} from 'react'
 import { set } from 'date-fns';
 
+interface CommentProps{
+	content: string;
+	onDeleteComment: (comment: string) => void;
+}
 
-export function Comment ({ content, onDeleteComment }) {
+export function Comment ({ content, onDeleteComment }: CommentProps) {
 	const[likeCount, setlikeCount] = useState(0);
 
 	function handleDeleteComment(){
@@ -20,7 +24,7 @@ export function Comment ({ content, onDeleteComment }) {
 
 	return(
 		<div className={styles.comment}>
-			<Avatar hasBorder={false} src="https://github.com/claudioavgo.png"/>
+			<Avatar hasBorder={false} src="https://github.com/claudioavgo.png" alt="User avatar"/>
 
 			<div className={styles.commentBox}>
 

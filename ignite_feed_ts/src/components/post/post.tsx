@@ -17,25 +17,31 @@ interface Content{
     type: 'paragraph' | 'link';
     content: string;
 }
-interface PostProps{
+
+export interface PostType{
+    id: number;
     author: Author;
     publishedAt: Date;
     content: Content[];
 }
 
+interface PostProps{
+    post: PostType;
+}
 
-export function Post({author, publishedAt, content}: PostProps){
+
+export function Post({post}: PostProps){
     const [comments, setComments] = useState([
        'post muito bacana, hein?'
     ])
 
     const [newCommentText , setNewCommentText] = useState('')
 
-    const publishedDateformat = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    const publishedDateformat = format(post.publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR,
     })
 
-    const publishedDateRelativeFromNow = formatDistanceToNow(publishedAt, {
+    const publishedDateRelativeFromNow = formatDistanceToNow(post.publishedAt, {
         locale: ptBR,
         addSuffix: true,
 
@@ -76,21 +82,21 @@ export function Post({author, publishedAt, content}: PostProps){
 
         <header>
             <div className={styles.author}>
-                <Avatar src={author.avatarUrl}/>
+                <Avatar src={post.author.avatarUrl}/>
                 <div className={styles.authorInfo}>
-                    <strong>{author.name}</strong>
-                    <span>{author.role}</span>
+                    <strong>{post.author.name}</strong>
+                    <span>{post.author.role}</span>
                 </div>
 
             </div>
 
             <time title={publishedDateformat}
-            dateTime={publishedAt.toISOString()}>{publishedDateRelativeFromNow}</time>
+            dateTime={post.publishedAt.toISOString()}>{publishedDateRelativeFromNow}</time>
 
         </header>
 
         <div className={styles.content}>
-            {content.map(Line =>{
+            {post.content.map(Line =>{
                 if (Line.type == 'paragraph'){
                     return <p key={Line.content}>{Line.content}</p>
                 } else if (Line.type =='link'){
